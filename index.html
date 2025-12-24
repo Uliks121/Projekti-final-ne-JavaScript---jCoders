@@ -5,86 +5,254 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    color: #222;
-}
+        :root {
+            --bg: #0b1220;
+            --panel: rgba(255, 255, 255, 0.06);
+            --card: rgba(255, 255, 255, 0.08);
+            --text: #e7eaf0;
+            --muted: rgba(231, 234, 240, 0.72);
+            --accent: #7c5cff;
+            --accent2: #00d4ff;
+            --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+            --shadowSoft: 0 10px 30px rgba(0, 0, 0, 0.22);
+            --radius: 14px;
+        }
 
-header {
-    background: #111;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        * { box-sizing: border-box; }
 
-header nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: bold;
-}
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+            background:
+                radial-gradient(1200px 600px at 10% 0%, rgba(124, 92, 255, 0.30), transparent 60%),
+                radial-gradient(900px 500px at 90% 10%, rgba(0, 212, 255, 0.22), transparent 55%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
 
-.hero {
-    background: url('showroom.jpg') center/cover no-repeat;
-    color: black;
-    text-align: center;
-    padding: 120px 20px;
-}
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(11, 18, 32, 0.72);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text);
+            padding: 16px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.cars {
-    padding: 40px;
-    text-align: center;
-}
-.add-car input {
-    padding: 8px;
-    margin: 5px;
-}
-.car-card {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    width: 280px;
-    display: inline-block;
-    margin: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
+        header h1 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 0.4px;
+        }
 
-.car-card img {
-    width: 100%;
-    border-radius: 8px;
-}
+        header nav a {
+            color: var(--muted);
+            margin-left: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 10px 10px;
+            border-radius: 10px;
+            transition: background 160ms ease, color 160ms ease;
+        }
 
-.price {
-    display: block;
-    margin-top: 10px;
-    color: #e60000;
-    font-size: 20px;
-    font-weight: bold;
-}
+        header nav a:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.07);
+        }
 
-.services {
-    background: #fff;
-    padding: 40px;
-    text-align: center;
-}
+        h2 {
+            text-align: center;
+            margin: 28px 16px 14px;
+            font-size: 24px;
+            letter-spacing: 0.2px;
+        }
 
-.services ul {
-    list-style: none;
-    padding: 0;
-    font-size: 18px;
-}
+        #buy {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(124, 92, 255, 0.28), rgba(0, 212, 255, 0.18));
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
 
-footer {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-}
+        .hero {
+            margin: 18px 16px 10px;
+            border-radius: calc(var(--radius) + 4px);
+            padding: 80px 22px;
+            text-align: center;
+            background:
+                linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url('showroom.jpg') center/cover no-repeat;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .hero h2 {
+            margin: 0 0 8px;
+            font-size: 34px;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .add-car {
+            margin: 10px auto 10px;
+            padding: 16px;
+            max-width: 980px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+            gap: 10px;
+            align-items: center;
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: var(--radius);
+            box-shadow: var(--shadowSoft);
+        }
+
+        .add-car input {
+            padding: 12px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            outline: none;
+        }
+
+        .add-car input::placeholder { color: rgba(231, 234, 240, 0.55); }
+
+        .add-car input:focus {
+            border-color: rgba(124, 92, 255, 0.65);
+            box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.18);
+        }
+
+        button {
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: linear-gradient(90deg, rgba(124, 92, 255, 0.92), rgba(0, 212, 255, 0.72));
+            color: #0b1220;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            transition: transform 120ms ease, filter 120ms ease, opacity 120ms ease;
+        }
+
+        button:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        button:active { transform: translateY(0px); }
+        button:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+        .cars {
+            padding: 18px 16px 34px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .cars h2 {
+            margin: 18px 0 14px;
+        }
+
+        .car-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin: 14px;
+            display: inline-block;
+            width: min(320px, calc(100% - 28px));
+            vertical-align: top;
+            box-shadow: var(--shadowSoft);
+            transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: rgba(124, 92, 255, 0.35);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .car-card h3 {
+            margin: 12px 0 8px;
+            font-size: 18px;
+        }
+
+        .price {
+            display: inline-block;
+            margin-top: 2px;
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 900;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .services {
+            max-width: 980px;
+            margin: 18px auto 0;
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            padding: 26px 16px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadowSoft);
+        }
+
+        .services ul {
+            list-style: none;
+            padding: 0;
+            font-size: 16px;
+            color: var(--muted);
+            margin: 10px 0 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        footer {
+            max-width: 980px;
+            margin: 18px auto 26px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            color: var(--muted);
+            text-align: center;
+            padding: 16px;
+            border-radius: var(--radius);
+        }
+
+        @media (max-width: 860px) {
+            .add-car {
+                grid-template-columns: 1fr;
+            }
+            header nav a {
+                margin-left: 8px;
+            }
+            .hero {
+                padding: 64px 18px;
+            }
+            .hero h2 {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -96,7 +264,7 @@ footer {
             <a href="#kontakti">Kontakti</a>
         </nav>
     </header>
- <h2 style="text-align:center;">Balanci: <span id="balance">100000</span>$</h2>
+ <h2 style="text-align:center;">Balanci: <span id="buy">1000000</span>$</h2>
     <section class="hero">
         <h2>Mirësevini në Autosallon USC</h2>
         <p>Makinat më të mira, çmimet më konkurruese!</p>
@@ -115,35 +283,35 @@ footer {
             <img src="car1.jpg" alt="Audi RS6">
             <h3>Audi RS6</h3>
             <span class="price">$130,700</span>
-            <button onclick="buy(130700)">Buy</button>
+            <button onclick="buyCar(130700, this)">Buy</button>
         </div>
 
         <div class="car-card">
             <img src="car2.jpg" alt="BMW G80 m3">
             <h3>BMW G80 m3</h3>
             <span class="price">$100,000</span>
-            <button onclick="buy(100000)">Buy</button>
+            <button onclick="buyCar(100000, this)">Buy</button>
         </div>
 
         <div class="car-card">
             <img src="car3.jpg" alt="Mercedes GT AMG">
             <h3>Mercedes GT AMG</h3>
             <span class="price">95,000$</span>
-            <button onclick="buy(95000)">Buy</button>
+            <button onclick="buyCar(95000, this)">Buy</button>
         </div>
 
                 <div class="car-card">
             <img src="car4.jpg" alt="Toyota Supra MK5">
             <h3>Toyota Supra MK5</h3>
             <span class="price">60,500$</span>
-            <button onclick="buy(60500)">Buy</button>
+            <button onclick="buyCar(60500, this)">Buy</button>
         </div>
 
                 <div class="car-card">
             <img src="car5.jpg" alt="Lamborghini STO Huracan">
             <h3>Lamborghini STO Huracan</h3>
             <span class="price">350,000$</span>
-            <button onclick="buy(350000)">Buy</button>
+            <button onclick="buyCar(350000, this)">Buy</button>
     </section>
 
     <section id="sherbimet" class="services">
@@ -164,16 +332,30 @@ footer {
 <script>
 
 let balance = 1000000;
-document.getElementById("balance").textContent = balance;
+document.getElementById("buy").textContent = balance;
 
 function updateBalance() {
-    document.getElementById("balance").textContent = balance;
+    document.getElementById("buy").textContent = balance;
 }
 
-function buyCar(price) {
-    if (balance >= price) {
-        balance -= price;    
-        updateBalance();  
+function buyCar(price, buttonEl) {
+    const numericPrice = Number(price);
+    if (!Number.isFinite(numericPrice)) {
+        alert("Çmimi nuk është valid!");
+        return;
+    }
+
+    if (balance >= numericPrice) {
+        balance -= numericPrice;
+        updateBalance();
+
+        const card = buttonEl && buttonEl.closest ? buttonEl.closest('.car-card') : null;
+        if (card) {
+            card.remove();
+        } else if (buttonEl) {
+            buttonEl.disabled = true;
+        }
+
         alert("Urime! E keni blerë makinën!");
     } else {
         alert("Nuk keni balancë të mjaftueshme!");
@@ -199,7 +381,7 @@ function addCar() {
         <img src="default-car.jpg" alt="${brand} ${model}">
         <h3>${brand} ${model}</h3>
         <span class="price">${price}$</span>
-        <button onclick="buyCar(${price})">Buy</button>
+        <button onclick="buyCar(${price}, this)">Buy</button>
     `;
 
     carsSection.appendChild(newCard);
